@@ -18,6 +18,7 @@ function App() {
           path="/teacher"
           element={<ProtectedRoute role="teacher"><Teacher /></ProtectedRoute>}
         />
+        
         <Route
           path="/group/:groupId"
           element={<ProtectedRoute role="teacher"><GroupStudents /></ProtectedRoute>}
