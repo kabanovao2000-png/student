@@ -1,0 +1,287 @@
+{
+  "teachers": [
+    {
+      "id": "1",
+      "login": "teacher",
+      "password": "teacher123",
+      "fullName": "Скляров Михаил"
+    }
+  ],
+  "students": [
+    {
+      "id": "1",
+      "login": "student1",
+      "password": "student123",
+      "fullName": "Бахман Анжелика",
+      "groupId": 1
+    },
+    {
+      "id": "2",
+      "login": "student2",
+      "password": "student123",
+      "fullName": "Белоус Виктория",
+      "groupId": 1
+    },
+    {
+      "id": "3",
+      "login": "student3",
+      "password": "student123",
+      "fullName": "Васильев Тимофей",
+      "groupId": 1
+    },
+    {
+      "id": "4",
+      "login": "student4",
+      "password": "student123",
+      "fullName": "Гойкина Ирина",
+      "groupId": 1
+    },
+    {
+      "id": "5",
+      "login": "student5",
+      "password": "student123",
+      "fullName": "Гоцкин Вадим",
+      "groupId": 1
+    },
+    {
+      "id": "6",
+      "login": "student6",
+      "password": "student123",
+      "fullName": "Зозуля Мария",
+      "groupId": 1
+    },
+    {
+      "id": "7",
+      "login": "student7",
+      "password": "student123",
+      "fullName": "Исайкин Егор",
+      "groupId": 1
+    },
+    {
+      "id": "8",
+      "login": "student8",
+      "password": "student123",
+      "fullName": "Кабанов Артём",
+      "groupId": 1
+    },
+    {
+      "id": "9",
+      "login": "student9",
+      "password": "student123",
+      "fullName": "Костылева Екатерина",
+      "groupId": 1
+    },
+    {
+      "id": "10",
+      "login": "student10",
+      "password": "student123",
+      "fullName": "Кравченко Тимофей",
+      "groupId": 1
+    },
+    {
+      "id": "11",
+      "login": "student11",
+      "password": "student123",
+      "fullName": "Куксенко Никодим",
+      "groupId": 1
+    },
+    {
+      "id": "12",
+      "login": "student12",
+      "password": "student123",
+      "fullName": "Лавриненко Валерия",
+      "groupId": 1
+    },
+    {
+      "id": "13",
+      "login": "student13",
+      "password": "student123",
+      "fullName": "Лесников Сергей",
+      "groupId": 1
+    },
+    {
+      "id": "14",
+      "login": "student14",
+      "password": "student123",
+      "fullName": "Малахова Алина",
+      "groupId": 1
+    },
+    {
+      "id": "15",
+      "login": "student15",
+      "password": "student123",
+      "fullName": "Малышев Богдан",
+      "groupId": 1
+    },
+    {
+      "id": "16",
+      "login": "student16",
+      "password": "student123",
+      "fullName": "Медяников Александр",
+      "groupId": 1
+    },
+    {
+      "id": "17",
+      "login": "student17",
+      "password": "student123",
+      "fullName": "Осмачко Диана",
+      "groupId": 1
+    },
+    {
+      "id": "18",
+      "login": "student18",
+      "password": "student123",
+      "fullName": "Пасечникова София",
+      "groupId": 1
+    },
+    {
+      "id": "19",
+      "login": "student19",
+      "password": "student123",
+      "fullName": "Пожидаева Алина",
+      "groupId": 1
+    },
+    {
+      "id": "20",
+      "login": "student20",
+      "password": "student123",
+      "fullName": "Прасолов Захар",
+      "groupId": 1
+    },
+    {
+      "id": "21",
+      "login": "student21",
+      "password": "student123",
+      "fullName": "Прохорович Дарья",
+      "groupId": 1
+    },
+    {
+      "id": "22",
+      "login": "student22",
+      "password": "student123",
+      "fullName": "Хабаху Темиркан",
+      "groupId": 1
+    },
+    {
+      "id": "23",
+      "login": "student23",
+      "password": "student123",
+      "fullName": "Шагамбаев Никита",
+      "groupId": 1
+    },
+    {
+      "id": "24",
+      "login": "student24",
+      "password": "student123",
+      "fullName": "Шангин Ростислав",
+      "groupId": 1
+    }
+  ],
+  "groups": [
+    {
+      "id": "1",
+      "name": "Группа ИС-21",
+      "teacherId": 1
+    }
+  ],
+  "disciplines": [
+    {
+      "id": "1",
+      "name": "Веб-разработка",
+      "groupId": 1
+    },
+    {
+      "id": "2",
+      "name": "Базы данных",
+      "groupId": 1
+    },
+    {
+      "id": "3",
+      "name": "Программирование",
+      "groupId": 1
+    },
+    {
+      "id": "4",
+      "name": "Дизайн интерфейсов",
+      "groupId": 1
+    },
+    {
+      "id": "5",
+      "name": "Английский язык",
+      "groupId": 1
+    },
+    {
+      "id": "6",
+      "name": "Jujutsu Kaisen (Modulo)",
+      "groupId": 1
+    }
+  ],
+  "attendance": [
+    {
+      "studentId": 1,
+      "disciplineId": "1",
+      "date": "2026-06-23",
+      "status": "P",
+      "reason": "",
+      "id": "WQkx1n0TxTw"
+    },
+    {
+      "studentId": 2,
+      "disciplineId": "1",
+      "date": "2026-06-23",
+      "status": "P",
+      "reason": "",
+      "id": "BhxguuINtwI"
+    },
+    {
+      "studentId": 3,
+      "disciplineId": "1",
+      "date": "2026-06-23",
+      "status": "N",
+      "reason": "Семейные обстоятельства",
+      "id": "QYjUs7Lp_as"
+    },
+    {
+      "studentId": 5,
+      "disciplineId": "1",
+      "date": "2026-06-23",
+      "status": "N",
+      "reason": "",
+      "id": "cWxpGG39pmg"
+    },
+    {
+      "studentId": 23,
+      "disciplineId": 2,
+      "date": "2026-06-23",
+      "status": "N",
+      "reason": "Прогулял",
+      "id": "oURMf9YVvek"
+    },
+    {
+      "studentId": 1,
+      "disciplineId": 2,
+      "date": "2026-06-23",
+      "status": "P",
+      "reason": "",
+      "id": "OXU2W27mE98"
+    },
+    {
+      "studentId": 7,
+      "disciplineId": 2,
+      "date": "2026-06-23",
+      "status": "Оп",
+      "reason": "",
+      "id": "dUzAfBxBfRw"
+    },
+    {
+      "studentId": 6,
+      "disciplineId": "1",
+      "date": "2026-06-23",
+      "status": "Б",
+      "reason": "",
+      "id": "30Xvpa2Cots"
+    }
+  ],
+  "polls": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}

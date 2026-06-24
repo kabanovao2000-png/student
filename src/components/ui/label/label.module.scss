@@ -1,0 +1,13 @@
+.label {
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 500;
+    align-self: flex-start;
+    color: var(--text);
+    font-family: var(--font-family-geologica);
+    margin-bottom: 12px;
+    display: block;
+
+    &:not(:first-of-type) {
+      margin-top: 20px;    // ← увеличенный отступ между полями
+    }
+  }

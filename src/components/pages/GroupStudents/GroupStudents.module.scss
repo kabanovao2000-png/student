@@ -1,0 +1,96 @@
+// src/components/pages/GroupStudents/GroupStudents.module.scss
+
+.page {
+  min-height: 100vh;
+  background: #f0f2f5;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.headerContent {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.backBtn,
+.logoutBtn {
+  padding: 0.4rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 10px;
+  border: 1px solid #3498db;
+  color: #3498db;
+  background: none;
+  &:hover {
+    background: #3498db;
+    color: #fff;
+  }
+}
+
+.logoutBtn {
+  border-color: #e74c3c;
+  color: #e74c3c;
+  &:hover {
+    background: #e74c3c;
+    color: #fff;
+  }
+}
+
+.main {
+  flex: 1;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #1a1a2e;
+}
+
+.tableWrapper {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  th,
+  td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+  }
+  th {
+    background: #f8f9fc;
+    font-weight: 600;
+  }
+}

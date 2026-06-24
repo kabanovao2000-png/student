@@ -1,0 +1,371 @@
+// src/pages/mainTeacher/mainTeacher.module.scss
+
+// ===== СТРАНИЦА =====
+.page {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: var(--fon);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-top: 0;
+  }
+  
+  // ===== ОСНОВНОЙ КОНТЕНТ =====
+  .content {
+    flex: 1;
+    padding: 30px 40px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  // ===== ПРИВЕТСТВИЕ =====
+  .welcomeSection {
+    margin-top: 20px;
+  }
+  
+  .welcomeTitle {
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 700;
+    color: var(--text);
+    font-family: var(--font-family-geologica);
+    margin-bottom: 8px;
+  }
+  
+  .userNameHighlight {
+    color: var(--present);
+    font-weight: 700;
+  }
+  
+  .welcomeSubtitle {
+    font-size: clamp(16px, 1.5vw, 20px);
+    color: var(--beh-text);
+    font-family: var(--font-family-geologica);
+  }
+  // ===== СОСТОЯНИЕ ЗАГРУЗКИ =====
+.loadingState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  color: var(--beh-text);
+  font-size: 18px;
+  font-family: var(--font-family-geologica);
+}
+  // ===== УЧЕБНЫЕ ГРУППЫ =====
+  .groupsSection {
+    background: var(--fon-cart);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid var(--ramka);
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+  
+  .sectionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .sectionTitle {
+    font-size: clamp(24px, 2.5vw, 32px);
+    font-weight: 700;
+    color: var(--text);
+    font-family: var(--font-family-geologica);
+    margin: 0;
+  }
+  
+  .groupCount {
+    font-size: 14px;
+    color: var(--beh-text);
+    background: var(--input);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--ramka);
+    font-family: var(--font-family-geologica);
+  }
+  
+  .sectionSubtitle {
+    font-size: 16px;
+    color: var(--beh-text);
+    font-family: var(--font-family-geologica);
+    margin-bottom: 24px;
+    margin-top: 0;
+  }
+  
+  // ===== СЕТКА ГРУПП =====
+  .groupsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  // ===== КАРТОЧКА ГРУППЫ =====
+  .groupCard {
+    background: var(--input);
+    border-radius: 16px;
+    border: 2px solid var(--ramka);
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      border-color: var(--present);
+    }
+  
+    &.selected {
+      border-color: var(--present);
+      box-shadow: 0 0 0 3px rgba(83, 215, 91, 0.2), 0 8px 30px rgba(0, 0, 0, 0.3);
+      transform: translateY(-4px);
+    }
+  }
+  
+  // ===== ЗАГОЛОВОК КАРТОЧКИ =====
+  .cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .groupNameBadge {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    font-family: var(--font-family-geologica);
+    letter-spacing: 0.5px;
+    transition: transform 0.3s ease;
+  
+    .groupCard:hover & {
+      transform: scale(1.05);
+    }
+  }
+  
+  // ===== ТЕЛО КАРТОЧКИ =====
+  .cardBody {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 4px 0;
+  }
+  
+  .cardStat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    transition: background-color 0.3s;
+  
+    .groupCard:hover & {
+      background: rgba(255, 255, 255, 0.06);
+    }
+  }
+  
+  .statIcon {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  
+  .statInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+  }
+  
+  .statLabel {
+    font-size: 14px;
+    color: var(--beh-text);
+    font-family: var(--font-family-geologica);
+  }
+  
+  .statValue {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    font-family: var(--font-family-geologica);
+  }
+  
+  // ===== ПОДВАЛ КАРТОЧКИ =====
+  .cardFooter {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 4px;
+  }
+  
+  .viewDetails {
+    font-size: 13px;
+    color: var(--present);
+    font-weight: 500;
+    font-family: var(--font-family-geologica);
+    opacity: 0;
+    transition: all 0.3s ease;
+    transform: translateX(-10px);
+  
+    .groupCard:hover & {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  
+    .groupCard.selected & {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  // ===== ВЫБРАННАЯ ГРУППА =====
+  .selectedGroupInfo {
+    background: var(--fon-cart);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid var(--present);
+    box-shadow: 0 4px 20px var(--shadow);
+    animation: fadeInUp 0.4s ease;
+  
+    h3 {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text);
+      font-family: var(--font-family-geologica);
+      margin: 0 0 16px 0;
+    }
+  
+    p {
+      font-size: 16px;
+      color: var(--beh-text);
+      font-family: var(--font-family-geologica);
+    }
+  }
+  
+  // ===== АНИМАЦИЯ =====
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  // ===== АДАПТИВ =====
+  
+  // Планшеты
+  @media (max-width: 1024px) {
+    .content {
+      padding: 20px 24px 40px;
+      gap: 30px;
+    }
+  
+    .groupsGrid {
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+  
+    .groupsSection {
+      padding: 24px;
+    }
+  }
+  
+  // Телефоны
+  @media (max-width: 768px) {
+    .content {
+      padding: 16px 16px 30px;
+      gap: 24px;
+    }
+  
+    .groupsSection {
+      padding: 20px 16px;
+      border-radius: 16px;
+    }
+  
+    .groupsGrid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  
+    .groupCard {
+      padding: 16px;
+    }
+  
+    .groupNameBadge {
+      font-size: 16px;
+      padding: 4px 14px;
+    }
+  
+    .statValue {
+      font-size: 17px;
+    }
+  
+    .sectionHeader {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .welcomeTitle {
+      font-size: 24px;
+    }
+  
+    .welcomeSubtitle {
+      font-size: 15px;
+    }
+  }
+  
+  // Маленькие телефоны
+  @media (max-width: 480px) {
+    .content {
+      padding: 12px 12px 20px;
+      gap: 16px;
+    }
+  
+    .groupsSection {
+      padding: 16px 12px;
+      border-radius: 12px;
+    }
+  
+    .groupCard {
+      padding: 12px;
+    }
+  
+    .groupNameBadge {
+      font-size: 14px;
+      padding: 3px 12px;
+    }
+  
+    .statIcon {
+      font-size: 18px;
+    }
+  
+    .statLabel {
+      font-size: 12px;
+    }
+  
+    .statValue {
+      font-size: 15px;
+    }
+  
+    .viewDetails {
+      font-size: 12px;
+    }
+  
+    .welcomeTitle {
+      font-size: 20px;
+    }
+  }
