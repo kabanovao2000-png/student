@@ -1,107 +1,144 @@
-// src/components/pages/GroupStudents/GroupStudents.tsx
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import styles from './GroupStudents.module.scss'; // ← исправлен импорт стилей
-import { getUser, logout } from '../../../utils/auth';
-import { students, subjects, attendance, groupSubjects } from '../../../data/groupsData';
+// GroupStudents.tsx
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../GroupStudents/GroupStudents.module.scss';
+
+type AttendanceStatus = 'был' | 'не был' | 'опоздал' | 'заболел' | 'пропустил';
+type Grade = number | AttendanceStatus;
+type MarkValue = Grade | ''; // теперь пустая строка допустима
+
+interface Students {
+  id: number;
+  name: string;
+}
+
+interface GroupData {
+  groupName: string;
+  teacherName: string;
+  students: Students[];
+}
+
+type Period = 'daily' | 'weekly' | 'monthly';
+
+// Моковые данные
+const mockGroup: GroupData = {
+  groupName: 'ИС-21',
+  teacherName: 'Иванов Иван Иванович',
+  students: [
+    { id: 1, name: 'Петров Петр' },
+    { id: 2, name: 'Сидорова Анна' },
+    { id: 3, name: 'Козлов Дмитрий' },
+    { id: 4, name: 'Смирнова Екатерина' },
+  ],
+};
+
+const attendanceOptions: AttendanceStatus[] = ['был', 'не был', 'опоздал', 'заболел', 'пропустил'];
+// Все возможные значения для выпадающего списка, включая пустую строку
+const selectOptions: MarkValue[] = ['', 2, 3, 4, 5, ...attendanceOptions];
 
 const GroupStudents: React.FC = () => {
-  const { groupId } = useParams<{ groupId: string }>();
   const navigate = useNavigate();
-  const user = getUser();
+  const [activePeriod, setActivePeriod] = useState<Period>('daily');
+  const [marks, setMarks] = useState<Record<Period, Record<number, MarkValue>>>({
+    daily: {},
+    weekly: {},
+    monthly: {},
+  });
 
-  const [groupStudents, setGroupStudents] = useState<any[]>([]);
-  const [groupSubjectIds, setGroupSubjectIds] = useState<number[]>([]);
-  const [monthlyData, setMonthlyData] = useState<any[]>([]);
-
-  useEffect(() => {
-    if (!user || user.role !== 'teacher') {
-      navigate('/login');
-      return;
-      
-    }
-
-    const gId = Number(groupId);
-    const studentsInGroup = students.filter(s => s.groupId === gId);
-    setGroupStudents(studentsInGroup);
-
-    const subIds = groupSubjects[gId] || [];
-    setGroupSubjectIds(subIds);
-
-    // Собираем все даты из посещаемости (для первого студента, первого предмета)
-    if (studentsInGroup.length > 0 && subIds.length > 0) {
-      const firstStudent = studentsInGroup[0];
-      const dates = Object.keys(attendance[firstStudent.id]?.[subIds[0]] || {});
-      const data = dates.map(date => {
-        const row: any = { date };
-        studentsInGroup.forEach(st => {
-          const statuses: Record<number, string> = {};
-          subIds.forEach(subId => {
-            statuses[subId] = attendance[st.id]?.[subId]?.[date] || '-';
-          });
-          row[st.id] = statuses;
-        });
-        return row;
-      });
-      setMonthlyData(data);
-    }
-  }, [groupId, user, navigate]);
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
+  // Возвращает MarkValue (число, статус или пустую строку)
+  const getMark = (studentId: number): MarkValue => {
+    const periodMarks = marks[activePeriod];
+    return periodMarks?.[studentId] ?? '';
   };
 
-  const handleBack = () => navigate('/teacher');
+  const handleMarkChange = (studentId: number, value: MarkValue) => {
+    setMarks((prev) => ({
+      ...prev,
+      [activePeriod]: {
+        ...prev[activePeriod],
+        [studentId]: value,
+      },
+    }));
+  };
 
-  if (!user) return null;
+  const handleLogout = () => {
+    navigate('/teacher');
+  };
 
   return (
-    <div className={styles.page}>
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <span className={styles.title}>Группа {groupId}</span>
-          <div>
-            <button className={styles.backBtn} onClick={handleBack}>Назад</button>
-            <button className={styles.logoutBtn} onClick={handleLogout}>Выход</button>
+    <div className="group-container">
+      <header className="sticky-header">
+        <div className="header-content">
+          <div className="group-info">
+            <h1>{mockGroup.groupName}</h1>
+            <span className="teacher-name">Преподаватель: {mockGroup.teacherName}</span>
           </div>
+          <button className="logout-btn" onClick={handleLogout}>
+            Выход
+          </button>
         </div>
       </header>
-      <main className={styles.main}>
-        <h2 className={styles.sectionTitle}>Ежемесячная успеваемость</h2>
-        <div className={styles.tableWrapper}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>ФИО студента</th>
-                {groupSubjectIds.map(subId => {
-                  const sub = subjects.find(s => s.id === subId);
-                  return <th key={subId}>{sub?.name || '?'}</th>;
-                })}
-              </tr>
-            </thead>
-            <tbody>
-              {groupStudents.map(student => {
-                // Для простоты показываем последний статус по каждому предмету
-                const lastStatus: Record<number, string> = {};
-                groupSubjectIds.forEach(subId => {
-                  const dates = Object.keys(attendance[student.id]?.[subId] || {});
-                  const lastDate = dates.length > 0 ? dates[dates.length - 1] : null;
-                  lastStatus[subId] = lastDate ? attendance[student.id][subId][lastDate] : '-';
-                });
-                return (
-                  <tr key={student.id}>
-                    <td>{student.fullName}</td>
-                    {groupSubjectIds.map(subId => (
-                      <td key={subId}>{lastStatus[subId] || '-'}</td>
-                    ))}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </main>
+
+      <div className="period-tabs">
+        <button
+          className={activePeriod === 'daily' ? 'active' : ''}
+          onClick={() => setActivePeriod('daily')}
+        >
+          Ежедневные
+        </button>
+        <button
+          className={activePeriod === 'weekly' ? 'active' : ''}
+          onClick={() => setActivePeriod('weekly')}
+        >
+          Еженедельные
+        </button>
+        <button
+          className={activePeriod === 'monthly' ? 'active' : ''}
+          onClick={() => setActivePeriod('monthly')}
+        >
+          Ежемесячные
+        </button>
+      </div>
+
+      <table className="marks-table">
+        <thead>
+          <tr>
+            <th>Студент</th>
+            <th>Отметка / Оценка</th>
+          </tr>
+        </thead>
+        <tbody>
+          {mockGroup.students.map((student) => (
+            <tr key={student.id}>
+              <td>{student.name}</td>
+              <td>
+                <select
+                  value={getMark(student.id)}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (val === '') {
+                      handleMarkChange(student.id, '');
+                    } else {
+                      const num = Number(val);
+                      if (!isNaN(num)) {
+                        handleMarkChange(student.id, num);
+                      } else {
+                        handleMarkChange(student.id, val as AttendanceStatus);
+                      }
+                    }
+                  }}
+                >
+                  {selectOptions.map((opt) => (
+                    <option key={String(opt)} value={String(opt)}>
+                      {opt === '' ? '—' : opt}
+                    </option>
+                  ))}
+                </select>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

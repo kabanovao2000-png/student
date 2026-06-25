@@ -1,125 +1,85 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './Student.module.scss';
-import { getUser, logout } from '../../../utils/auth';
-import { subjects, grades, attendance, groupSubjects } from '../../../data/groupsData';
-
-type ViewMode = 'subjects' | 'weekly';
+import { getUser } from '../../../utils/auth';
+import Loader from '../../common/Loader/Loader';
+import styles from './Students.module.scss';
+import type { Discipline } from '../../../types/user';
 
 const Student: React.FC = () => {
   const navigate = useNavigate();
   const user = getUser();
-  const [view, setView] = useState<ViewMode>('subjects');
-  const [studentGrades, setStudentGrades] = useState<Record<number, number>>({});
-  const [weeklyData, setWeeklyData] = useState<{ date: string; subjects: Record<number, string> }[]>([]);
+  const [disciplines, setDisciplines] = useState<Discipline[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user || user.role !== 'student') {
+    if (!user || user.role !== 'student' || !user.groupId) {
       navigate('/login');
       return;
     }
-    // Загружаем оценки студента
-    const studentId = user.id;
-    const gradesData = grades[studentId] || {};
-    setStudentGrades(gradesData);
 
-    // Подготавливаем еженедельные данные
-    const groupId = user.groupId!;
-    const groupSubjectIds = groupSubjects[groupId] || [];
-    // Собираем все даты за неделю (из attendance)
-    const allDates = Object.keys(attendance[studentId]?.[groupSubjectIds[0]] || {});
-    const weekly = allDates.map(date => {
-      const subjectsStatus: Record<number, string> = {};
-      groupSubjectIds.forEach(subId => {
-        subjectsStatus[subId] = attendance[studentId]?.[subId]?.[date] || '-';
-      });
-      return { date, subjects: subjectsStatus };
-    });
-    setWeeklyData(weekly);
+    const fetchDisciplines = async () => {
+      try {
+        const res = await fetch(`/api/disciplines?groupId=${user.groupId}`);
+        if (!res.ok) throw new Error('Ошибка загрузки дисциплин');
+        const data = await res.json();
+        setDisciplines(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchDisciplines();
   }, [user, navigate]);
 
   const handleLogout = () => {
-    logout();
-    navigate('/login');
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = '/login';
   };
 
-  if (!user) return <div>Ошибка</div>;
+  const goToSubject = (disciplineId: string) => {
+    navigate(`/student/subject/${disciplineId}`);
+  };
 
-  const groupSubjectIds = groupSubjects[user.groupId!] || [];
+  if (loading) {
+    return (
+      <div className={styles.pageBackground}>
+        <div className={styles.studentCard}>
+          <Loader />
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className={styles.page}>
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <span className={styles.userName}>{user.fullName}</span>
-          <button className={styles.logoutBtn} onClick={handleLogout}>Выход</button>
-        </div>
-      </header>
-      <main className={styles.main}>
-        <div className={styles.controls}>
-          <button
-            className={view === 'subjects' ? styles.activeBtn : styles.btn}
-            onClick={() => setView('subjects')}
-          >
-            Предметы
+    <div className={styles.pageBackground}>
+      <div className={styles.studentCard}>
+        <header className={styles.stickyHeader}>
+          <div className={styles.userInfo}>
+            <span className={styles.userName}>{user?.fullName}</span>
+            <span className={styles.userGroup}>Группа: {user?.groupId}</span>
+          </div>
+          <button className={styles.logoutBtn} onClick={handleLogout}>
+            Выход
           </button>
-          <button
-            className={view === 'weekly' ? styles.activeBtn : styles.btn}
-            onClick={() => setView('weekly')}
-          >
-            Еженедельная
-          </button>
-        </div>
+        </header>
 
-        <div className={styles.tableContainer}>
-          {view === 'subjects' ? (
-            <>
-              <h2 className={styles.sectionTitle}>Успеваемость по предметам</h2>
-              <table className={styles.table}>
-                <thead>
-                  <tr><th>Предмет</th><th>Оценка</th></tr>
-                </thead>
-                <tbody>
-                  {groupSubjectIds.map(subId => {
-                    const subject = subjects.find(s => s.id === subId);
-                    const grade = studentGrades[subId] || '-';
-                    return (
-                      <tr key={subId}>
-                        <td>{subject?.name || 'Неизвестно'}</td>
-                        <td>{grade}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </>
-          ) : (
-            <>
-              <h2 className={styles.sectionTitle}>Еженедельная успеваемость</h2>
-              <table className={styles.table}>
-                <thead>
-                  <tr><th>Дата</th>
-                    {groupSubjectIds.map(subId => {
-                      const subject = subjects.find(s => s.id === subId);
-                      return <th key={subId}>{subject?.name || '?'}</th>;
-                    })}
-                  </tr>
-                </thead>
-                <tbody>
-                  {weeklyData.map((item, idx) => (
-                    <tr key={idx}>
-                      <td>{item.date}</td>
-                      {groupSubjectIds.map(subId => (
-                        <td key={subId}>{item.subjects[subId] || '-'}</td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </>
-          )}
+        <div className={styles.subjectsBlock}>
+          <h2>📚 Дисциплины</h2>
+          <div className={styles.subjectButtons}>
+            {disciplines.map((d) => (
+              <button
+                key={d.id}
+                className={styles.subjectButton}
+                onClick={() => goToSubject(d.id)}
+              >
+                {d.name}
+              </button>
+            ))}
+          </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 };

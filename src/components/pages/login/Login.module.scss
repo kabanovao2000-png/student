@@ -1,72 +1,117 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-.container {
-  width: 100vw; height: 100vh;
-  background-color: #f0f2f5;
-  display: flex; align-items: center; justify-content: center;
-}
-.form {
-  width: min(500px, 90vw);
-  background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  padding: 40px 30px;
+// Login.module.scss – научный стиль (Доктор Стоун)
+
+@use 'sass:color';
+
+$bg-primary: #1a1e24;
+$bg-card: rgba(30, 35, 42, 0.92);
+$text-primary: #e8edf2;
+$text-secondary: #b0bcc9;
+$accent-green: #4caf50;
+$accent-green-dark: #2e7d32;
+$accent-gold: #c9a83a;
+$border-color: #3a424d;
+$shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+$font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+
+.loginPage {
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  background: $bg-primary;
+  background-image: radial-gradient(circle at 10% 20%, rgba(76, 175, 80, 0.05) 0%, transparent 50%),
+                    radial-gradient(circle at 90% 80%, rgba(201, 168, 58, 0.04) 0%, transparent 50%);
+  padding: 20px;
+  font-family: $font-family;
 }
-.title {
-  font-size: 28px; font-weight: 700;
-  color: #1a1a2e;
-  margin-bottom: 8px;
-}
-.comment {
-  font-size: 16px; color: #6c757d;
-  margin-bottom: 30px;
-}
-.fieldsContainer {
+
+.loginCard {
+  max-width: 400px;
   width: 100%;
+  background: $bg-card;
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  padding: 40px 32px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: $shadow;
+
+  h2 {
+    margin: 0 0 24px;
+    font-size: 28px;
+    font-weight: 600;
+    color: $text-primary;
+    &::before {
+      content: '⛰️ ';
+      font-size: 30px;
+      margin-right: 8px;
+    }
+  }
+}
+
+.form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.fieldGroup {
+
+.field {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
+  text-align: left;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: $text-secondary;
+  }
+
+  input {
+    padding: 10px 14px;
+    border: 1px solid $border-color;
+    border-radius: 30px;
+    font-size: 16px;
+    background: $bg-primary;
+    color: $text-primary;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $accent-green;
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+    }
+  }
 }
-.label {
-  font-size: 18px; font-weight: 500;
-  color: #1a1a2e;
-  margin-bottom: 6px;
-}
-.input {
-  width: 100%;
-  padding: 14px 20px;
+
+button[type='submit'] {
+  padding: 12px;
+  background: $accent-green;
+  color: #1a1e24;
+  border: none;
+  border-radius: 30px;
   font-size: 18px;
-  background: #ffffff;
-  border: 1px solid #d0d5dd;
-  border-radius: 10px;
-  outline: none;
-  &:focus { border-color: #0066cc; }
-}
-.button {
-  width: 100%;
-  padding: 16px;
-  background-color: #0066cc;
-  color: #ffffff;
-  font-size: 22px; font-weight: 600;
-  border: none; border-radius: 10px;
+  font-weight: 600;
   cursor: pointer;
-  &:hover { background-color: #0052a3; }
+  transition: 0.2s;
+
+  &:hover:not(:disabled) {
+    background: color.adjust($accent-green, $lightness: 10%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(76, 175, 80, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
+
 .error {
-  color: #d32f2f;
-  background: #fdecea;
-  border: 1px solid #d32f2f;
-  border-radius: 8px;
   padding: 10px;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 10px;
+  background: rgba(192, 57, 43, 0.15);
+  border-radius: 30px;
+  color: #e74c3c;
+  font-size: 14px;
+  border: 1px solid #e74c3c;
 }

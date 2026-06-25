@@ -1,0 +1,172 @@
+// Subject.module.scss – научный стиль (Доктор Стоун)
+
+@use 'sass:color';
+
+$bg-primary: #1a1e24;
+$bg-card: rgba(30, 35, 42, 0.92);
+$bg-table-even: #2a2f38;
+$bg-table-odd: #1e2329;
+$text-primary: #e8edf2;
+$text-secondary: #b0bcc9;
+$accent-green: #4caf50;
+$accent-gold: #c9a83a;
+$border-color: #3a424d;
+$shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+$font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+
+.subjectContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: $bg-primary;
+  background-image: radial-gradient(circle at 10% 20%, rgba(76, 175, 80, 0.05) 0%, transparent 50%),
+                    radial-gradient(circle at 90% 80%, rgba(201, 168, 58, 0.04) 0%, transparent 50%);
+  font-family: $font-family;
+}
+
+.stickyHeader {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: $bg-card;
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: $shadow;
+  margin-bottom: 16px;
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+    color: $text-primary;
+    &::before {
+      content: '⛰️ ';
+      font-size: 24px;
+      margin-right: 8px;
+    }
+  }
+
+  .backButton {
+    padding: 8px 20px;
+    background: transparent;
+    border: 1px solid $border-color;
+    border-radius: 30px;
+    color: $text-secondary;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background: $accent-gold;
+      border-color: $accent-gold;
+      color: #1a1e24;
+      transform: scale(1.02);
+    }
+  }
+}
+
+.reportBlock {
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 12px 20px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  border: 1px solid $border-color;
+
+  .reportItem {
+    font-size: 15px;
+    font-weight: 500;
+    color: $text-primary;
+  }
+}
+
+.legend {
+  flex-shrink: 0;
+  display: flex;
+  gap: 20px;
+  padding: 6px 0 12px;
+  font-size: 14px;
+  flex-wrap: wrap;
+
+  .legendItem {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+    color: $text-secondary;
+  }
+}
+
+.attendanceTableWrapper {
+  flex: 1;
+  overflow-y: auto;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid $border-color;
+  padding: 4px;
+}
+
+.attendanceTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: transparent;
+  font-size: 14px;
+  color: $text-primary;
+
+  th, td {
+    padding: 12px 16px;
+    border-bottom: 1px solid $border-color;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  th {
+    position: sticky;
+    top: 0;
+    background: $bg-primary;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+    color: $text-secondary;
+    border-bottom: 2px solid $accent-green;
+    z-index: 10;
+  }
+
+  tbody tr {
+    transition: background 0.15s;
+    &:nth-child(even) { background: $bg-table-even; }
+    &:nth-child(odd) { background: $bg-table-odd; }
+    &:hover {
+      background: color.adjust($bg-table-even, $lightness: 5%);
+    }
+  }
+}
+
+.loading, .errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 20px;
+  color: $text-primary;
+  background: $bg-primary;
+}
+
+@media (max-width: 768px) {
+  .subjectContainer { padding: 12px; }
+  .stickyHeader { flex-direction: column; align-items: flex-start; gap: 12px; }
+}

@@ -2,9 +2,9 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import Login from '../components/pages/login/Login';
-import MainStudents from '../components/pages/mainStudents/mainStudents';
-import MainTeacher from '../components/pages/mainTeacher/mainTeacher';
-import GroupPage from '../../src/components/pages/groupPage/gropePage'; // ← ДОБАВИТЬ ИМПОРТ
+import Students from '../components/pages/Students/Students';
+import Teacher from '../components/pages/Teacher/Teacher';
+import GroupPage from '../components/pages/groupPage/GroupPage'; // ← ДОБАВИТЬ ИМПОРТ
 import { isAuthenticated, getUserRole } from '../utils/auth';
 
 interface ProtectedRouteProps {
@@ -68,7 +68,7 @@ export const Router = () => {
         path="/student"
         element={
           <ProtectedRoute role="student">
-            <MainStudents />
+            <Students />
           </ProtectedRoute>
         }
       />
@@ -77,7 +77,7 @@ export const Router = () => {
         path="/teacher"
         element={
           <ProtectedRoute role="teacher">
-            <MainTeacher />
+            <Teacher />
           </ProtectedRoute>
         }
       />

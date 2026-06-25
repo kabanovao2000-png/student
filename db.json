@@ -192,27 +192,22 @@
     },
     {
       "id": "2",
-      "name": "Базы данных",
+      "name": "Математика",
       "groupId": 1
     },
     {
       "id": "3",
-      "name": "Программирование",
+      "name": "Физ-ра",
       "groupId": 1
     },
     {
       "id": "4",
-      "name": "Дизайн интерфейсов",
+      "name": "Физика",
       "groupId": 1
     },
     {
       "id": "5",
       "name": "Английский язык",
-      "groupId": 1
-    },
-    {
-      "id": "6",
-      "name": "Jujutsu Kaisen (Modulo)",
       "groupId": 1
     }
   ],
@@ -280,8 +275,512 @@
       "status": "Б",
       "reason": "",
       "id": "30Xvpa2Cots"
+    },
+    {
+      "studentId": 23,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "",
+      "id": "ZwTDk-3f7p8"
+    },
+    {
+      "studentId": 8,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "Б",
+      "reason": "",
+      "id": "GlYP1dzu-24"
+    },
+    {
+      "studentId": 2,
+      "disciplineId": "1",
+      "date": "2026-06-04",
+      "status": "N",
+      "reason": "",
+      "id": "n6DLmTiGDX4"
+    },
+    {
+      "studentId": 1,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "AFDuOSItjWU"
+    },
+    {
+      "studentId": 2,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "7zNFu-7656o"
+    },
+    {
+      "studentId": 3,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "O5cSW0_0YEU"
+    },
+    {
+      "studentId": 4,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "xuoIppyKEZA"
+    },
+    {
+      "studentId": 5,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "JLLDb5ZTCNY"
+    },
+    {
+      "studentId": 6,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "X04togvYldQ"
+    },
+    {
+      "studentId": 7,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "_cpolkL9EO0"
+    },
+    {
+      "studentId": 8,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "JpNXSd6xQSk"
+    },
+    {
+      "studentId": 9,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "kOAq4x-6_BA"
+    },
+    {
+      "studentId": 10,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "wv-15saAW38"
+    },
+    {
+      "studentId": 11,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "WLC2RtbEsDo"
+    },
+    {
+      "studentId": 12,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "lpaak319NHM"
+    },
+    {
+      "studentId": 13,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "XxtN0_uo5LQ"
+    },
+    {
+      "studentId": 14,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "LKW-WrEAXi8"
+    },
+    {
+      "studentId": 15,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "uLGuv-ihvoM"
+    },
+    {
+      "studentId": 16,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "sChjLaQVFV8"
+    },
+    {
+      "studentId": 17,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "1znmXc4XNe8"
+    },
+    {
+      "studentId": 18,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "m4Yw31ZnzbU"
+    },
+    {
+      "studentId": 19,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "nsjw3U9fwOw"
+    },
+    {
+      "studentId": 20,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "es_C5Pf3E5s"
+    },
+    {
+      "studentId": 21,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "E0B99O1DmwI"
+    },
+    {
+      "studentId": 22,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "UqM2IQ7hfx4"
+    },
+    {
+      "studentId": 23,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "sbemwJdYtsw"
+    },
+    {
+      "studentId": 24,
+      "disciplineId": "1",
+      "date": "2026-06-24",
+      "status": "N",
+      "reason": "Не отметился на опросе",
+      "id": "ZGg9FtUo12w"
+    },
+    {
+      "studentId": 1,
+      "disciplineId": "2",
+      "date": "2026-06-25",
+      "status": "",
+      "reason": "м",
+      "id": "r6oUVxfhu5I"
+    },
+    {
+      "studentId": 1,
+      "disciplineId": "2",
+      "date": "2026-06-25",
+      "status": "",
+      "reason": "к",
+      "id": "1t16cVpyBwQ"
+    },
+    {
+      "studentId": 1,
+      "disciplineId": "2",
+      "date": "2026-06-25",
+      "status": "",
+      "reason": "амм",
+      "id": "hrYNTGGYBB8"
+    },
+    {
+      "studentId": 2,
+      "disciplineId": "2",
+      "date": "2026-06-25",
+      "status": "",
+      "reason": "мм",
+      "id": "F7lkbnzvxG4"
+    },
+    {
+      "studentId": 3,
+      "disciplineId": "1",
+      "date": "2026-06-25",
+      "status": "Оп",
+      "reason": "",
+      "grade": 1,
+      "id": "lDzOwBNlbD4"
+    },
+    {
+      "studentId": 8,
+      "disciplineId": "1",
+      "date": "2026-06-25",
+      "status": "present",
+      "reason": "",
+      "grade": 5,
+      "id": "VUK5mk2bG_I"
+    },
+    {
+      "studentId": 1,
+      "disciplineId": "1",
+      "date": "2026-06-25",
+      "status": "absent",
+      "reason": "",
+      "id": "tI0SdF1HdQM"
+    },
+    {
+      "studentId": 2,
+      "disciplineId": "1",
+      "date": "2026-06-25",
+      "status": "present",
+      "reason": "",
+      "id": "D6gO1A7O7oQ"
+    },
+    {
+      "studentId": 1,
+      "disciplineId": "4",
+      "date": "2026-06-25",
+      "status": "sick",
+      "reason": "",
+      "id": "0WEFcT9uYRM"
+    },
+    {
+      "studentId": 4,
+      "disciplineId": "4",
+      "date": "2026-06-25",
+      "status": "present",
+      "reason": "",
+      "id": "ZPKmRKjirFM"
+    },
+    {
+      "studentId": 8,
+      "disciplineId": "4",
+      "date": "2026-06-25",
+      "status": "present",
+      "reason": "",
+      "id": "J42oinYai98"
+    },
+    {
+      "studentId": 1,
+      "disciplineId": "4",
+      "date": "2026-06-24",
+      "status": "present",
+      "reason": "",
+      "id": "kgSwR5ozwes"
+    },
+    {
+      "studentId": 1,
+      "disciplineId": "4",
+      "date": "2026-06-23",
+      "status": "present",
+      "reason": "",
+      "id": "VLWmAjZ-ryE"
+    },
+    {
+      "studentId": 1,
+      "disciplineId": "4",
+      "date": "2026-06-22",
+      "status": "present",
+      "reason": "",
+      "id": "M6z6nEBgk5A"
+    },
+    {
+      "studentId": 8,
+      "disciplineId": "4",
+      "date": "2026-06-22",
+      "status": "present",
+      "reason": "",
+      "id": "arBlJShwGy4"
+    },
+    {
+      "studentId": 8,
+      "disciplineId": "4",
+      "date": "2026-06-23",
+      "status": "present",
+      "reason": "",
+      "id": "eYP4owjHIj4"
+    },
+    {
+      "studentId": 8,
+      "disciplineId": "4",
+      "date": "2026-06-24",
+      "status": "present",
+      "reason": "",
+      "id": "yD3BvbsLHl4"
+    },
+    {
+      "studentId": 11,
+      "disciplineId": "4",
+      "date": "2026-06-24",
+      "status": "sick",
+      "reason": "",
+      "id": "370SLUTtafs"
+    },
+    {
+      "studentId": 11,
+      "disciplineId": "4",
+      "date": "2026-06-23",
+      "status": "sick",
+      "reason": "",
+      "id": "5ETEHJE3BlM"
+    },
+    {
+      "studentId": 11,
+      "disciplineId": "4",
+      "date": "2026-06-22",
+      "status": "late",
+      "reason": "",
+      "id": "hiYOzIz9_Pk"
+    },
+    {
+      "studentId": 11,
+      "disciplineId": "4",
+      "date": "2026-06-25",
+      "status": "sick",
+      "reason": "",
+      "id": "Z07U1Qd-WAs"
     }
   ],
-  "polls": [],
+  "polls": [
+    {
+      "disciplineId": "1",
+      "teacherId": 1,
+      "groupId": "1",
+      "startedAt": "2026-06-24T20:45:11.461Z",
+      "expiresAt": "2026-06-24T20:50:11.461Z",
+      "active": false,
+      "id": "bp6hPgu64S4"
+    },
+    {
+      "disciplineId": "1",
+      "teacherId": 1,
+      "groupId": "1",
+      "startedAt": "2026-06-24T20:55:37.167Z",
+      "expiresAt": "2026-06-24T21:00:37.167Z",
+      "active": true,
+      "id": "lQNtvT2I4Xg"
+    },
+    {
+      "disciplineId": "1",
+      "teacherId": 1,
+      "groupId": "1",
+      "startedAt": "2026-06-25T05:21:20.566Z",
+      "expiresAt": "2026-06-25T05:26:20.566Z",
+      "active": true,
+      "id": "EFzLwLGAeeo"
+    },
+    {
+      "disciplineId": "1",
+      "teacherId": 1,
+      "groupId": "1",
+      "startedAt": "2026-06-25T05:23:19.870Z",
+      "expiresAt": "2026-06-25T05:28:19.870Z",
+      "active": false,
+      "id": "VhY2u5VN4Y0"
+    },
+    {
+      "disciplineId": "1",
+      "teacherId": 1,
+      "groupId": "1",
+      "startedAt": "2026-06-25T05:26:54.906Z",
+      "expiresAt": "2026-06-25T05:31:54.906Z",
+      "active": true,
+      "id": "IP0y3-zdVvo"
+    },
+    {
+      "disciplineId": "1",
+      "teacherId": 1,
+      "groupId": "1",
+      "startedAt": "2026-06-25T05:38:40.529Z",
+      "expiresAt": "2026-06-25T05:43:40.529Z",
+      "active": true,
+      "id": "G_yR96XMG9o"
+    },
+    {
+      "disciplineId": "1",
+      "teacherId": 1,
+      "groupId": "1",
+      "startedAt": "2026-06-25T05:39:53.178Z",
+      "expiresAt": "2026-06-25T05:44:53.178Z",
+      "active": true,
+      "id": "FdFsy_rzLPc"
+    },
+    {
+      "disciplineId": "1",
+      "teacherId": 1,
+      "groupId": "1",
+      "startedAt": "2026-06-25T06:07:16.450Z",
+      "expiresAt": "2026-06-25T06:12:16.450Z",
+      "active": true,
+      "id": "Mf-9_Jto2cw"
+    },
+    {
+      "disciplineId": "1",
+      "teacherId": 1,
+      "groupId": "1",
+      "startedAt": "2026-06-25T06:09:23.897Z",
+      "expiresAt": "2026-06-25T06:14:23.897Z",
+      "active": true,
+      "id": "HoPvXVIAmW0"
+    },
+    {
+      "disciplineId": "1",
+      "teacherId": 1,
+      "groupId": "1",
+      "startedAt": "2026-06-25T06:13:03.380Z",
+      "expiresAt": "2026-06-25T06:18:03.380Z",
+      "active": true,
+      "id": "TiBiAj3tZ78"
+    },
+    {
+      "disciplineId": "1",
+      "teacherId": 1,
+      "groupId": "1",
+      "startedAt": "2026-06-25T06:14:45.517Z",
+      "expiresAt": "2026-06-25T06:19:45.517Z",
+      "active": true,
+      "id": "Kt1VkHJCY1o"
+    },
+    {
+      "disciplineId": "1",
+      "teacherId": 1,
+      "groupId": "1",
+      "startedAt": "2026-06-25T06:15:04.313Z",
+      "expiresAt": "2026-06-25T06:20:04.313Z",
+      "active": true,
+      "id": "zZyH1Qwe2TE"
+    },
+    {
+      "disciplineId": "1",
+      "teacherId": 1,
+      "groupId": "1",
+      "startedAt": "2026-06-25T06:15:28.505Z",
+      "expiresAt": "2026-06-25T06:20:28.505Z",
+      "active": true,
+      "id": "04Y95EHo9ek"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

@@ -1,257 +1,155 @@
-/* Переменные */
-:root {
-  --white: #fff;
-  --fon: #673384;
-  --button: #E09303;
-  --ramka: #A890B0;
-  --text: #F0E8E6;
-  --fon-cart: #2B1F1A;
-  --beh-text: #897B6B;
-  --shadow: #0a07063b;
-  --late: #DEC019;
-  --present: #53D75B;
-  --no-show: #C83C34;
-  --plague: #568A53;
-  --input: #150F0D;
+/* =============================================
+   Глобальный стиль в духе "Доктор Стоун"
+   Каменный век + наука (зелень, дерево, камень)
+   ============================================= */
 
-  
-  
-  --font-family-geologica: geologica, arial, sans-serif;
-}
-@font-face {
-  font-family: geologica;
-  src: url('./assets/fonts/Geologica.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-/* Базовый сброс стилей */
-* {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-*::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-*::-webkit-scrollbar-track {
-  background: var(--white);
-  border-radius: 12px; 
-}
-*::-webkit-scrollbar-thumb {
-  background: var(--text);
-  border-radius: 12px;
-  cursor: pointer;
-}
-*::-webkit-scrollbar-thumb:hover {
-  background: var(--beh-text);
-}
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  vertical-align: baseline;
-  color: inherit;
-}
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-html,
-body,
-#root {
-  height: 100%;
-  overflow: hidden;
-}
-body {
-  line-height: 1;
-  font-family: var(--font-family-geologica);
-  background-color: var(--secondary-background);
-  color: var(--text-black);
-}
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote::before,
-blockquote::after,
-q::before,
-q::after {
-  content: '';
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-button {
-  background: none;
-  padding: 0;
-  cursor: pointer;
-  font: inherit;
-  color: inherit;
-  outline: none;
-  border: none;
-  &:focus-visible {
-      outline: none;
+   :root {
+    --bg-page: #C8E6C9;          /* светло-зелёный фон */
+    --bg-card: #FFF8E7;          /* чуть желтоватый, как пергамент */
+    --border-color: #5D4037;     /* тёмно-коричневый */
+    --text-dark: #2E4A2B;        /* тёмно-зелёный */
+    --header-bg: #2E4A2B;        /* тёмно-зелёный для шапок */
+    --header-text: #FFFFFF;
+    --btn-primary: #4CAF50;      /* зелёный */
+    --btn-danger: #8D6E63;       /* коричневый */
+    --shadow-color: rgba(46, 74, 43, 0.3);
   }
-}
-svg {
-  flex-shrink: 0;
-}
-input,
-textarea,
-select {
-  font: inherit;
-  outline: none;
-}
-input[type='search']::-webkit-search-cancel-button {
-  appearance: none;
-}
-input[type='search']::-webkit-search-decoration {
-  appearance: none;
-}
-input[type='search']::-moz-search-cancel-button {
-  appearance: none;
-}
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-h1 {
-  /*28px-36px*/
-  font-size: clamp(1.75rem, 1.6286rem + 0.5178vw, 2.25rem);
-  line-height: normal;
-  font-weight: 500;
-}
-h2 {
-  /*22px-26px*/
-  font-size: clamp(1.375rem, 1.3143rem + 0.2589vw, 1.625rem);
-  /*26px-30px*/
-  line-height: clamp(1.625rem, 1.5643rem + 0.2589vw, 1.875rem);
-  font-weight: 600;
-}
-h3 {
-  /*18px-20px*/
-  font-size: clamp(1.125rem, 1.0947rem + 0.1294vw, 1.25rem);
-  /*22px-24px*/
-  line-height: clamp(1.375rem, 1.3447rem + 0.1294vw, 1.5rem);
-  font-weight: 500;
-}
-.text-normal {
-  font-size: 48px;
-  line-height: normal;
-  font-weight: 400;
-}
-.text-comment-title {
-  font-size: 24px;
-  line-height: normal;
-  font-weight: 400;
-}
-.text-filled {
-  font-size: 40px;
-  line-height: normal;
-  font-weight: 400;
-}
-.text-head {
-  font-size: 96px;
-  line-height: normal;
-  font-weight: 900;
-}
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Russo One', 'Arial Black', sans-serif;
+    background-color: var(--bg-page);
+    /* Текстура "каменной крошки" на фоне */
+    background-image: 
+      repeating-linear-gradient(
+        45deg,
+        rgba(139, 115, 85, 0.08) 0px,
+        rgba(139, 115, 85, 0.08) 2px,
+        transparent 2px,
+        transparent 8px
+      );
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+  
+  /* Все карточки – как каменные плиты */
+  .studentCard,
+  .teacherCard,
+  .groupCard,
+  .loginCard {
+    background-color: var(--bg-card) !important;
+    background-image: 
+      repeating-linear-gradient(
+        45deg,
+        rgba(160, 140, 120, 0.05) 0px,
+        rgba(160, 140, 120, 0.05) 3px,
+        transparent 3px,
+        transparent 9px
+      );
+    border: 2px solid var(--border-color) !important;
+    box-shadow: 0 8px 24px var(--shadow-color) !important;
+  }
+  
+  /* Липкие шапки – с "рубленой" нижней границей */
+  .stickyHeader {
+    border-bottom: 3px solid #8D6E63;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Все кнопки – как выдавленные камни */
+  button {
+    font-family: 'Russo One', sans-serif;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 8px !important;
+    transition: all 0.1s ease;
+    box-shadow: 0 3px 0 #2E4A2B; /* тень создаёт объём */
+    border: none;
+  }
+  
+  button:active {
+    transform: translateY(3px);
+    box-shadow: 0 0px 0 #2E4A2B;
+  }
+  
+  /* Иконки на кнопках (эмодзи) */
+  .logoutBtn::before {
+    content: "⚗️ ";
+  }
+  .backButton::before {
+    content: "🪨 ";
+  }
+  .downloadButton::before {
+    content: "📜 ";
+  }
+  .subjectButton::before {
+    content: "🧪 ";
+  }
+  .groupButton::before {
+    content: "🏛️ ";
+  }
+  .periodButton::before {
+    content: "⏳ ";
+  }
+  
+  /* Заголовки – как вырезанные на камне */
+  h1, h2, h3 {
+    font-family: 'Russo One', sans-serif;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Таблицы – в стиле старых свитков */
+  .attendanceTable,
+  .marksTable {
+    border: 2px solid var(--border-color);
+    background: rgba(255, 248, 231, 0.3);
+  }
+  .attendanceTable th,
+  .marksTable th {
+    background: #A5D6A7;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    font-size: 0.9em;
+  }
+  .attendanceTable td,
+  .attendanceTable th,
+  .marksTable td,
+  .marksTable th {
+    border-color: var(--border-color) !important;
+  }
+  
+  /* Кнопки периодов – в стиле "переключателей каменного века" */
+  .periodButton {
+    background: #E8F5E9;
+    border: 2px solid var(--border-color) !important;
+  }
+  .periodButton.active {
+    background: var(--btn-primary);
+    color: white;
+  }
+  
+  /* Легенда статусов (если есть) */
+  .legendItem {
+    font-weight: bold;
+  }
+  
+  /* Поля ввода – как углубления в камне */
+  input, select {
+    background: #FFF8E7;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: 'Russo One', sans-serif;
+    color: var(--text-dark);
+  }
+  input:focus, select:focus {
+    outline: none;
+    border-color: var(--btn-primary);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+  }

@@ -1,50 +1,89 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getUser } from '../../../utils/auth';
+import Loader from '../../common/Loader/Loader';
 import styles from './Teacher.module.scss';
-import { getUser, logout } from '../../../utils/auth';
-import { groups } from '../../../data/groupsData';
+import type { Group } from '../../../types/user';
 
 const Teacher: React.FC = () => {
   const navigate = useNavigate();
   const user = getUser();
-  const [teacherGroups, setTeacherGroups] = useState(groups); // все группы для преподавателя (мок)
+  const [groups, setGroups] = useState<Group[]>([]);
+  const [loading, setLoading] = useState(true);
 
+  //Бесконечный цикл
   useEffect(() => {
     if (!user || user.role !== 'teacher') {
       navigate('/login');
+      return;
     }
+
+    const fetchGroups = async () => {
+      try {
+        const res = await fetch(`/api/groups?teacherId=${Number(user.id)}`);
+        if (!res.ok) throw new Error('Ошибка загрузки групп');
+        const data = await res.json();
+        setGroups(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchGroups();
   }, [user, navigate]);
 
   const handleLogout = () => {
-    logout();
-    navigate('/login');
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = '/login';
   };
 
-  const handleGroupClick = (groupId: number) => {
+  const goToGroup = (groupId: string) => {
     navigate(`/group/${groupId}`);
   };
 
-  if (!user) return null;
+  if (loading) {
+    return (
+      <div className={styles.pageBackground}>
+        <div className={styles.teacherCard}>
+          <Loader />
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className={styles.page}>
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <span className={styles.userName}>{user.fullName}</span>
-          <button className={styles.logoutBtn} onClick={handleLogout}>Выход</button>
-        </div>
-      </header>
-      <main className={styles.main}>
-        <h2 className={styles.title}>Мои группы</h2>
-        <div className={styles.groupsGrid}>
-          {teacherGroups.map(group => (
-            <div key={group.id} className={styles.groupCard} onClick={() => handleGroupClick(group.id)}>
-              <h3>{group.name}</h3>
-              <p>Количество студентов: {Math.floor(Math.random() * 20) + 10}</p>
+    <div className={styles.pageBackground}>
+      <div className={styles.teacherCard}>
+        <header className={styles.stickyHeader}>
+          <div className={styles.userInfo}>
+            <span className={styles.userName}>{user?.fullName}</span>
+          </div>
+          <button className={styles.logoutBtn} onClick={handleLogout}>
+            Выход
+          </button>
+        </header>
+
+        <div className={styles.groupsBlock}>
+          <h2>🗿 Мои группы</h2>
+          {groups.length === 0 ? (
+            <p>У вас пока нет групп</p>
+          ) : (
+            <div className={styles.groupButtons}>
+              {groups.map((g) => (
+                <button
+                  key={g.id}
+                  className={styles.groupButton}
+                  onClick={() => goToGroup(g.id)}
+                >
+                  {g.name}
+                </button>
+              ))}
             </div>
-          ))}
+          )}
         </div>
-      </main>
+      </div>
     </div>
   );
 };

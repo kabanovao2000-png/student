@@ -1,8 +1,5 @@
-// src/services/authService.ts
-import type { User } from '../types/user';
+import type { DbStudent, DbTeacher, User } from '../types/user';
 
-// ===== КОНФИГУРАЦИЯ =====
-// /api проксируется на http://localhost:4000
 const API_URL = '/api';
 
 /** Поиск преподавателя по логину и паролю */
@@ -10,41 +7,24 @@ const findTeacher = async (
   login: string,
   password: string,
 ): Promise<User | null> => {
-  try {
-    console.log('🔍 Поиск преподавателя:', login);
-    
-    // Запрос через прокси /api → http://localhost:4000
-    const response = await fetch(`${API_URL}/teachers?login=${login}&password=${password}`);
-    
-    if (!response.ok) {
-      console.error('❌ Ошибка сервера:', response.status);
-      return null;
-    }
+  const params = new URLSearchParams({ login, password });
+  const response = await fetch(`${API_URL}/teachers?${params}`);
 
-    const teachers = await response.json();
-    console.log('📦 Получены преподаватели:', teachers);
-    
-    // Находим преподавателя с нужным логином и паролем
-    const teacher = teachers.find(
-      (t: any) => t.login === login && t.password === password
-    );
+  if (!response.ok) {
+    throw new Error('Ошибка соединения с сервером');
+  }
 
-    if (!teacher) {
-      console.log('❌ Преподаватель не найден');
-      return null;
-    }
+  const teachers: DbTeacher[] = await response.json();
+  const teacher = teachers[0];
 
-    console.log('✅ Найден преподаватель:', teacher.fullName);
-    
-    return {
-      id: Number(teacher.id),
-      fullName: teacher.fullName,
-      role: 'teacher',
-    };
-  } catch (error) {
-    console.error('💥 Ошибка запроса к серверу:', error);
+  if (!teacher) {
     return null;
   }
+
+  // Исключаем пароль из ответа
+  const { password: _, ...profile } = teacher;
+
+  return { ...profile, role: 'teacher' };
 };
 
 /** Поиск студента по логину и паролю */
@@ -52,65 +32,41 @@ const findStudent = async (
   login: string,
   password: string,
 ): Promise<User | null> => {
-  try {
-    console.log('🔍 Поиск студента:', login);
-    
-    // Запрос через прокси /api → http://localhost:4000
-    const response = await fetch(`${API_URL}/students?login=${login}&password=${password}`);
-    
-    if (!response.ok) {
-      console.error('❌ Ошибка сервера:', response.status);
-      return null;
-    }
+  const params = new URLSearchParams({ login, password });
+  const response = await fetch(`${API_URL}/students?${params}`);
 
-    const students = await response.json();
-    console.log('📦 Получены студенты:', students);
-    
-    // Находим студента с нужным логином и паролем
-    const student = students.find(
-      (s: any) => s.login === login && s.password === password
-    );
+  if (!response.ok) {
+    throw new Error('Ошибка соединения с сервером');
+  }
 
-    if (!student) {
-      console.log('❌ Студент не найден');
-      return null;
-    }
+  const students: DbStudent[] = await response.json();
+  const student = students[0];
 
-    console.log('✅ Найден студент:', student.fullName);
-    
-    return {
-      id: Number(student.id),
-      fullName: student.fullName,
-      role: 'student',
-      groupId: student.groupId,
-    };
-  } catch (error) {
-    console.error('💥 Ошибка запроса к серверу:', error);
+  if (!student) {
     return null;
   }
+
+  // Исключаем пароль из ответа
+  const { password: _, ...profile } = student;
+
+  return { ...profile, role: 'student' };
 };
 
-/** Аутентификация пользователя */
+/**
+ * Проверяет логин/пароль сначала среди преподавателей, затем среди студентов.
+ * Возвращает профиль без пароля или null, если никто не найден.
+ */
 export const authenticateUser = async (
   login: string,
   password: string,
 ): Promise<User | null> => {
-  console.log('🔐 Аутентификация:', { login, password });
-  
-  // Сначала ищем среди преподавателей
   const teacher = await findTeacher(login, password);
+
   if (teacher) {
     return teacher;
   }
 
-  // Затем среди студентов
-  const student = await findStudent(login, password);
-  if (student) {
-    return student;
-  }
-
-  console.log('❌ Пользователь не найден');
-  return null;
+  return findStudent(login, password);
 };
 
 /** Генерация уникального токена сессии */

@@ -1,0 +1,282 @@
+// Student.module.scss – научный стиль (Доктор Стоун)
+
+@use 'sass:color';
+
+$bg-primary: #1a1e24;
+$bg-card: rgba(30, 35, 42, 0.92);
+$bg-table-even: #2a2f38;
+$bg-table-odd: #1e2329;
+$text-primary: #e8edf2;
+$text-secondary: #b0bcc9;
+$accent-green: #4caf50;
+$accent-green-dark: #2e7d32;
+$accent-gold: #c9a83a;
+$border-color: #3a424d;
+$shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+$font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+
+.pageBackground {
+  min-height: 100vh;
+  background: $bg-primary;
+  background-image: radial-gradient(circle at 10% 20%, rgba(76, 175, 80, 0.05) 0%, transparent 50%),
+                    radial-gradient(circle at 90% 80%, rgba(201, 168, 58, 0.04) 0%, transparent 50%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px;
+  font-family: $font-family;
+}
+
+.studentCard {
+  max-width: 1200px;
+  width: 100%;
+  background: $bg-card;
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: $shadow;
+  padding: 28px 24px 24px;
+  transition: all 0.2s ease;
+}
+
+.stickyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid $border-color;
+  margin-bottom: 20px;
+
+  .userInfo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .userName {
+    font-size: 18px;
+    font-weight: 500;
+    color: $text-primary;
+    &::before {
+      content: '⛰️ ';
+      font-size: 20px;
+      margin-right: 8px;
+    }
+  }
+
+  .userGroup {
+    font-size: 16px;
+    font-weight: 400;
+    color: $text-secondary;
+  }
+
+  .logoutBtn {
+    padding: 8px 18px;
+    border: 1px solid $border-color;
+    border-radius: 30px;
+    background: transparent;
+    color: $text-secondary;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background: #c0392b;
+      border-color: #e74c3c;
+      color: #fff;
+      transform: scale(1.02);
+    }
+  }
+}
+
+.subjectsBlock {
+  padding: 0 0 16px;
+  h2 {
+    font-size: 22px;
+    margin: 0 0 16px 0;
+    color: $text-primary;
+  }
+}
+
+.subjectButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.subjectButton {
+  padding: 10px 24px;
+  background: transparent;
+  border: 1px solid $border-color;
+  border-radius: 30px;
+  color: $text-secondary;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background: rgba(76, 175, 80, 0.15);
+    border-color: $accent-green;
+    color: $text-primary;
+  }
+
+  &.active {
+    background: $accent-green;
+    border-color: $accent-green;
+    color: #1a1e24;
+    font-weight: 600;
+    box-shadow: 0 0 16px rgba(76, 175, 80, 0.3);
+  }
+}
+
+.periodTabs {
+  display: flex;
+  gap: 8px;
+  padding: 16px 0;
+
+  .periodButton {
+    padding: 6px 18px;
+    border-radius: 30px;
+    border: 1px solid $border-color;
+    background: transparent;
+    color: $text-secondary;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background: rgba(76, 175, 80, 0.15);
+      border-color: $accent-green;
+      color: $text-primary;
+    }
+
+    &.active {
+      background: $accent-green;
+      border-color: $accent-green;
+      color: #1a1e24;
+      font-weight: 600;
+    }
+  }
+}
+
+.marksTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: transparent;
+  border-radius: 14px;
+  overflow: hidden;
+  color: $text-primary;
+
+  th, td {
+    padding: 14px 18px;
+    border-bottom: 1px solid $border-color;
+    text-align: left;
+  }
+
+  th {
+    background: $bg-primary;
+    color: $text-secondary;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+    border-bottom: 2px solid $accent-green;
+  }
+
+  tbody tr {
+    transition: background 0.15s;
+    &:nth-child(even) { background: $bg-table-even; }
+    &:nth-child(odd) { background: $bg-table-odd; }
+    &:hover {
+      background: color.adjust($bg-table-even, $lightness: 5%);
+    }
+  }
+}
+
+.pollBlock {
+  margin-top: 24px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+  border: 1px solid $border-color;
+
+  h3 {
+    color: $accent-gold;
+    margin-top: 0;
+  }
+
+  .markButton {
+    padding: 10px 24px;
+    background: $accent-green;
+    border: none;
+    border-radius: 30px;
+    color: #1a1e24;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover:not(:disabled) {
+      background: color.adjust($accent-green, $lightness: 10%);
+      transform: translateY(-2px);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    &.marked {
+      background: $accent-gold;
+      color: #1a1e24;
+    }
+  }
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: $text-primary;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  border: 1px solid $border-color;
+
+  h3 {
+    color: $accent-gold;
+    margin-bottom: 12px;
+  }
+
+  p {
+    color: $text-secondary;
+    margin-bottom: 20px;
+  }
+
+  .backButton {
+    padding: 10px 28px;
+    background: $accent-green;
+    border: none;
+    border-radius: 30px;
+    color: #1a1e24;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background: color.adjust($accent-green, $lightness: 10%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .studentCard { padding: 16px; }
+  .stickyHeader { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .subjectButtons { flex-direction: column; }
+}

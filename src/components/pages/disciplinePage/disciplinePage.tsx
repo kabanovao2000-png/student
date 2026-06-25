@@ -21,7 +21,7 @@ interface AttendanceRecord {
   reason: string;
 }
 
-interface Student {
+interface Students {
   id: string;
   fullName: string;
   groupId: number;
@@ -37,7 +37,7 @@ const DisciplinePage: React.FC = () => {
 
   // ===== СОСТОЯНИЯ =====
   const [discipline, setDiscipline] = useState<Discipline | null>(null);
-  const [student, setStudent] = useState<Student | null>(null);
+  const [student, setStudent] = useState<Students | null>(null);
   const [attendance, setAttendance] = useState<AttendanceRecord[]>([]);
   const [loading, setLoading] = useState(true);
   
